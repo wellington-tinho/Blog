@@ -1,11 +1,22 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
-import { ChakraProvider } from '@chakra-ui/react'
 
-const MyApp: React.FC<AppProps> = function ({ Component, pageProps }) {
+import { Center, ChakraProvider } from '@chakra-ui/react'
+import theme from '../styles/theme';
+import { Header } from '../components/commons/Header';
+import { Card } from '../components/cad/card';
+
+import { cards } from '../components-mock.json'
+
+function MyApp() {
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />;
+    <ChakraProvider theme={theme}>
+       <Header/>
+       <Center>
+        {cards.map((card)=> (
+          <Card key={card.title} {...card} />
+        ))}
+       </Center>
     </ChakraProvider>
   )
 };
